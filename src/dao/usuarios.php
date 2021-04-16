@@ -1,24 +1,91 @@
 <?php 
-include("conn.php");
+include_once "../fachada.php";
 
-	class Usuario
-	{
-		private $nome;
-		private $email;
-		private $senha;
-		private $dataNascmiento;
-		private $cep;
-		private $endereco;
-		private $complemento;
-		private $tipo;
-		private $pdo;
-
-		function __construct()
-		{
-			$pdo = new Connection("pgsql:host=localhost;port=5433;dbname=Teste_Sorte_Verde", "Usuario", "159753"); #Pra isso aqui funcionar tem q ter o banco Teste_Sorte_Verde criado la e com a role de Usuario criado com a senha informada nos parâmetros.
-		}
-
-	}
-
-	$usuario = new Usuario(); #Pra testar se tá conectando no banco
 ?>
+
+<!DOCTYPE HTML>
+
+<html lang=pt-br>
+
+<head>
+	<meta charset="UTF-8">
+
+	<style>
+			table, th, td {
+  				border: 1px solid black;
+			}
+			table.center {
+  				margin-left: auto;
+  				margin-right: auto;
+			}
+	</style>
+
+	<title>Lista de usuários</title>
+</head>
+
+<body>
+
+<h1>Lista de usuários</h1>
+
+<?php
+
+echo "<section>";
+
+// procura usuários
+
+$dao = $factory->getUsuarioDao();
+$usuarios = $dao->buscaTodos();
+
+
+// mostra os usuários, se tiver
+if($usuarios) {
+ 
+	echo "<table>";
+	echo "<tr>";
+		echo "<th>Id</th>";
+		echo "<th>Login</th>";
+		echo "<th>Nome</th>";
+		echo "<th>Excluir</th>";
+	echo "</tr>";
+
+	//while ($row = $usuarios->fetch(PDO::FETCH_ASSOC)){
+	//	extract($row);
+
+	foreach ($usuarios as $umUsuario) {
+
+		echo "<tr>";
+			echo "<td>";
+			// link para editar um usuário
+	   		echo "<a href='editaUsuario.php?id={$umUsuario->getNome()}'>{$umUsuario->getNome()}</a>";
+	   		echo "</td>";
+			echo "<td>{$umUsuario->getEmail()}</td>";
+			echo "<td>{$umUsuario->getTelefone()}</td>";
+			echo "<td>";
+ 			// link para excluir um usuário
+			echo "<a href='excluiUsuario.php?id={$umUsuario->getCartaoCredito()}' onclick=\"return confirm('Quer mesmo excluir?');\">X</a>";
+			echo "</td>";
+ 
+		echo "</tr>";
+	}
+	echo "</table>";
+} else {
+	echo "<p>Não foram encontrados registros";
+}
+ 
+echo "</section>";
+
+
+?>
+<section>
+<h1>Informações do banco de dados:</h1>
+Driver : <?=$dao->getDriver()?><br>
+Versão do servidor  : <?=$dao->getServerVersion()?><br>
+Versão da lib  : <?=$dao->getClientVersion()?><br>
+AutoCommit? : <?=$dao->getAutoCommitMode()?><br>
+</section>
+
+<br>
+<a href="editaUsuario.php">Novo</a>
+
+</body>
+</html>
