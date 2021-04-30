@@ -1,13 +1,14 @@
 <?php
 
-error_reporting(E_ERROR | E_PARSE);
-
 include_once('model/Usuario.php');
 include_once('dao/UsuarioDao.php');
 include_once('dao/DaoFactory.php');
-include_once('dao/MysqlDaoFactory.php');
+include_once('dao/MySqlDaoFactory.php');
 
-$factory = new MysqlDaofactory();
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
+$factory = new MySqlDaofactory();
 
 ?>
