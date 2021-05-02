@@ -19,7 +19,7 @@ class MySqlDaofactory extends DaoFactory {
 
         try{
             //$this->conn = new PDO("pgsql:host=" . $this->host . ";port=" . $this->port . ";dbname=" . $this->db_name, $this->username, $this->password);
-            $this->conn = new PDO("mysql:host=localhost;port=3306;dbname=NOME DO NOSSO DB", $this->username, $this->password);
+            $this->conn = new PDO("mysql:host=localhost;port=3306;dbname=sorte_verde", $this->username, $this->password);
 
       }catch(PDOException $exception){
             echo "Connection error: " . $exception->getMessage();

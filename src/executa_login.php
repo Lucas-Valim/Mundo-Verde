@@ -1,15 +1,15 @@
 <?php
 // Métodos de acesso ao banco de dados
 require "fachada.php";
+include "comum.php";
 
 // Inicia sessão
 session_start();
 
 // Recupera o email
-$email = isset($_POST["login_email"]) ? addslashes(trim($_POST["login_email"])) : FALSE;
+$email = isset($_POST["email_login"]) ? addslashes(trim($_POST["email_login"])) : FALSE;
 
-$senha = isset($_POST["login_senha"]) ? (trim($_POST["login_senha"])) : FALSE;
-
+$senha = isset($_POST["senha_login"]) ? (trim($_POST["senha_login"])) : FALSE;
 
 // Usuário não forneceu a senha ou o login
 if(!$email || !$senha)
@@ -25,13 +25,13 @@ $usuario = $dao->buscaPorEmail($email);
 $problemas = FALSE;
 
 if($usuario) {
+
     //Verifica a senha
     if(!strcmp($senha, $usuario->getSenha()))
     {
-        TUDO OK! Agora, passa os dados para a sessão e redireciona o usuário
-        $_SESSION["ID_USUARIO"] = $usuario->getId();
-        $_SESSION["NOME"] = stripslashes($usuario->getNome());
-        $_SESSION["permissao"]= $dados["postar"];
+        $_SESSION["id_usuario"] = $usuario->getId();
+        $_SESSION["nome_usuario"] = stripslashes($usuario->getNome());
+        $_SESSION["permissao_usuario"] = $usuario->getTipo();
         header("Location: ./view/index");
         exit;
     } else {

@@ -1,11 +1,10 @@
 <?php
-include_once "fachada.php";
+include_once "../fachada.php";
 
 $nome = isset($_POST["nome_cadastro"]) ? addslashes(trim($_POST["nome_cadastro"])) : FALSE;
 $email = isset($_POST["email_cadastro"]) ? addslashes(trim($_POST["email_cadastro"])) : FALSE;
 $senha = isset($_POST["senha_cadastro"]) ? addslashes(trim($_POST["senha_cadastro"])) : FALSE;
 $senhaConf = isset($_POST["repete_senha"]) ? addslashes(trim($_POST["repete_senha"])) : FALSE;
-
 
 if (empty($nome) || empty($email) || empty($senha) || empty($senhaConf)){
     echo "<script type=\"text/javascript\">alert('Voce nao preencheu todos os campos, verifique novamente!')</script>"; 
@@ -21,11 +20,11 @@ if (strcmp($senha, $senhaConf)) {
     exit;
 }
 
-$usuario = new Usuario(null, $senha, $nome, $telefone, $email, $cartaoCredito);
+$usuario = new Usuario(null, $nome, $email, $senha, "1");
 $dao = $factory->getUsuarioDao();
 $dao->insere($usuario);
 
-header("../usuarios.php");
+header("Location: ./login.html");
 exit;
 
 ?>

@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Cadastro</title>
+    <title>Cadastro de Pontos</title>
     <!-- Favicon-->
     <link rel="sortcut icon" type="image/gif" href="assets/img/icon.png" />
     <!-- Custom fonts for this template-->
@@ -20,7 +20,9 @@
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
-
+    <?php
+        include_once "../verifica.php";
+    ?>
 </head>
 
 <body class="bg-gradient-primary">
@@ -35,37 +37,25 @@
                     <div class="col-lg-7">
                         <div class="p-5">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Crie uma conta!</h1>
+                                <h1 class="h4 text-gray-900 mb-4">Cadastre uma nova matéria:</h1>
                             </div>
-                            <form class="user" action="./insere_usuario.php" method="POST" role="form">
+                            <form class="user">
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-user" id="nome_cadastro" name="nome_cadastro" placeholder="Nome">
+                                    <input type="text" class="form-control form-control-user" id="nome_materia" name="nome_materia" placeholder="Digite o título da matéria">
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" class="form-control form-control-user" id="email_cadastro" name="email_cadastro" placeholder="E-mail">
+                                    <input type="text" class="form-control form-control-user" id="descricao_materia" name="descricao_materia" placeholder="Digite a descrição da matéria">
                                 </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="password" class="form-control form-control-user" id="senha_cadastro" name="senha_cadastro" placeholder="Senha">
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <input type="password" class="form-control form-control-user" id="repete_senha" name="repete_senha" placeholder="Repita a senha">
-                                    </div>
-                                </div>
-                                <div>
-                                    <button type="submit" style="width: 100%">
-                                        <a class="btn btn-primary btn-user btn-block" id="btn_registra_conta">
-                                            Registre a conta
-                                        </a>
-                                    </button>
-                                </div>
+                                <a href="login.html" class="btn btn-primary btn-user btn-block" id="btn_anexa">
+                                    Anexar Imagem
+                                </a>
+                                <a href="login.html" class="btn btn-primary btn-user btn-block" id="btn_publica">
+                                    Publicar matéria
+                                </a>
                                 <hr>
                             </form>
                             <div class="text-center">
-                                <a class="small" href="esquece_senha.html">Esqueceu a senha?</a>
-                            </div>
-                            <div class="text-center">
-                                <a class="small" href="login.html">Já tem uma conta?</a>
+                                <a class="small" href="index.html">Voltar</a>
                             </div>
                         </div>
                     </div>

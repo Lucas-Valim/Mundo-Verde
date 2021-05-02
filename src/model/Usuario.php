@@ -5,17 +5,15 @@ class Usuario {
     private $nome;
     private $email;
     private $senha;
-    private $senhaConf;
     private $tipo;
    
 
-    public function __construct( $id, $nome, $email,  $senha, $senhaConf, $tipo)
+    public function __construct( $id, $nome, $email,  $senha, $tipo)
     {
         $this->id=$id;
         $this->nome=$nome;
         $this->email=$email;
         $this->senha=$senha;
-        $this->senhaConf=$senhaConf;
         $this->tipo=$tipo; 
     }
 
@@ -30,9 +28,6 @@ class Usuario {
 
     public function getSenha() { return $this->senha; }
     public function setSenha($senha) {$this->senha = $senha;}
-
-    public function getSenha() { return $this->senhaConf; }
-    public function setSenha($senhaConf) {$this->senhaConf = $senhaConf;}
 
     public function getTipo() { return $this->tipo; }
     public function setTipo($tipo) {$this->tipo = $tipo;}

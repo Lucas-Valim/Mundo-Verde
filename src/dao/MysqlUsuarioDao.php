@@ -21,8 +21,6 @@ class MysqlUsuarioDao extends DAO implements UsuarioDao {
         $stmt->bindValue(":email", $usuario->getEmail());
         $stmt->bindValue(":tipo", $usuario->getTipo());
 
-        echo $query;
-
         if($stmt->execute()){
             return true;
         }else{
@@ -34,7 +32,7 @@ class MysqlUsuarioDao extends DAO implements UsuarioDao {
     public function altera(&$usuario) {
 
         $query = "UPDATE " . $this->table_name .
-        " SET nome = :nome, senha = :senha, email = :email, tipo = :tipo" .
+        " SET nome = :nome, senha = :senha, email = :email" .
         " WHERE id = :id";
 
         $stmt = $this->conn->prepare($query);
@@ -59,7 +57,7 @@ class MysqlUsuarioDao extends DAO implements UsuarioDao {
         $usuarios = array();
 
         $query = "SELECT
-                    ID , NOME, EMAIL, SENHA
+                    id , nome, email, senha, tipo
                 FROM
                     " . $this->table_name .
                     " ORDER BY ID ASC"; //ordenar por id ou nome?
@@ -69,10 +67,34 @@ class MysqlUsuarioDao extends DAO implements UsuarioDao {
 
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
             extract($row);
-            $usuarios[] = new Usuario($row['ID'],$row['NOME'], $row['EMAIL'], $row['SENHA'], $row['TIPO']); //Precisa por o tipo aqui?
+            $usuarios[] = new Usuario($row['id'],$row['nome'], $row['email'], $row['senha'], $row['tipo']); //Precisa por o tipo aqui?
         }
 
         return $usuarios;
+    }
+
+    public function buscaPorEmail($email) {
+
+        $usuario = null;
+
+        $query = "SELECT
+                    id, nome, email, senha, tipo
+                FROM
+                    " . $this->table_name .
+                " WHERE email = ?";
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->bindValue(1, $email);
+
+        $stmt->execute();
+
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($row)
+        {
+            $usuario = new Usuario($row['id'],$row['nome'], $row['email'], $row['senha'], $row['tipo']);
+        }
+        
+        return $usuario;
     }
 
 }
