@@ -14,8 +14,8 @@ $result_markers = "INSERT INTO markers(name, address, lat, lng, type)
 $resultado_markers = mysqli_query($conn, $result_markers);
 if(mysqli_insert_id($conn)){
 	$_SESSION['msg'] = "<span style='color: green';>Endereço cadastrado com sucesso!</span>";
-	header("Location: cadastrar.php");
+	header("Location: ./src/cadastrar.php");
 }else{
 	$_SESSION['msg'] = "<span style='color: red';>Erro: Endereço não foi cadastrado com sucesso!</span>";
-	header("Location: cadastrar.php");	
+	header("Location: ./src/cadastrar.php");	
 }

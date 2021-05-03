@@ -19,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `testemapa`
+-- Database: `sorte_verde`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `markers`
+-- Table structure for table `markers`
 --
 
 DROP TABLE IF EXISTS `markers`;
@@ -40,12 +40,42 @@ CREATE TABLE IF NOT EXISTS `markers` (
 ) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `markers`
+-- Dumping data for table `markers`
 --
 
 INSERT INTO `markers` (`id`, `name`, `address`, `lat`, `lng`, `type`) VALUES
 (6, 'Casa', '1', -29.126886, -51.182335, 'teste'),
 (5, 'Codeca', 'RUA 123', -29.128613, -51.182465, 'Lixo');
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `usuario`
+--
+
+DROP TABLE IF EXISTS `usuario`;
+CREATE TABLE IF NOT EXISTS `usuario` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `nome` varchar(250) NOT NULL,
+  `senha` varchar(32) NOT NULL,
+  `email` varchar(250) NOT NULL,
+  `tipo` int(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `usuario`
+--
+
+INSERT INTO `usuario` (`id`, `nome`, `senha`, `email`, `tipo`) VALUES
+(1, 'teste', '123', 'teste@teste', 1),
+(2, 'teste2', '123', 'teste2@teste', 1);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
