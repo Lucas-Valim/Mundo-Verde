@@ -20,6 +20,7 @@
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
     <?php
         include_once "../verifica.php";
     ?>
@@ -39,31 +40,31 @@
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Cadastre um ponto de coleta:</h1>
                             </div>
-                            <form class="user">
+                            <form class="user" method="POST" action="../processa_cad.php">
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-user" id="nome_ponto" name="nome_ponto" placeholder="Nome">
+                                    <input type="text" class="form-control form-control-user" id="name" name="name" placeholder="Nome">
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-user" id="endereco_ponto" name="endereco_ponto" placeholder="Endereço">
+                                    <input type="text" class="form-control form-control-user" id="address" name="address" placeholder="Endereço">
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" class="form-control form-control-user" id="latitude" name="latitude" placeholder="Latitude">
+                                        <input type="text" class="form-control form-control-user" id="lat" name="lat" placeholder="Latitude">
                                     </div>
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" class="form-control form-control-user" id="longitude" name="longitude" placeholder="Longitude">
+                                        <input type="text" class="form-control form-control-user" id="lng" name="lng" placeholder="Longitude">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-user" id="tipo_descarte" name="tipo_descarte" placeholder="Tipo de descarte">
+                                    <input type="text" class="form-control form-control-user" id="type" name="type" placeholder="Tipo de descarte">
                                 </div>
-                                <a href="login.html" class="btn btn-primary btn-user btn-block" id="btn_registra_ponto">
-                                    Registre o novo ponto
-                                </a>
-                                <hr>
+                                <div class="row">
+                                <input style="width: 50%;" type="reset" class="btn btn-primary btn-user"  value="Limpar"><br><br>
+                                <input style="width: 50%" type="submit" class="btn btn-primary btn-user"  value="Registre o novo ponto"><br><br>
+                                </div>
                             </form>
                             <div class="text-center">
-                                <a class="small" href="index.html">Voltar</a>
+                                <a class="small" href="index.php">Voltar</a>
                             </div>
                         </div>
                     </div>

@@ -4,6 +4,7 @@ include_once('DaoFactory.php');
 include_once('MySqlUsuarioDao.php');
 include_once('MySqlMaterialDao.php');
 include_once('MySqlMateriaDao.php');
+include_once('MySqlPontoColetaDao.php');
 
 class MySqlDaofactory extends DaoFactory {
 
@@ -39,6 +40,9 @@ class MySqlDaofactory extends DaoFactory {
 
     public function getMateriaDao() {
         return new MySqlMateriaDao($this->getConnection());
+    }
+    public function getPontoColetaDao() {
+        return new MySqlPontoColetaDao($this->getConnection());
     }
 }
 ?>
