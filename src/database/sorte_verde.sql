@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: 23-Abr-2021 às 00:58
--- Versão do servidor: 5.7.26
--- versão do PHP: 7.3.5
+-- Tempo de geração: 07-Maio-2021 às 01:11
+-- Versão do servidor: 5.7.31
+-- versão do PHP: 7.3.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `sorte_verde`
+-- Banco de dados: `sorte_verde`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `markers`
+-- Estrutura da tabela `markers`
 --
 
 DROP TABLE IF EXISTS `markers`;
@@ -37,55 +36,21 @@ CREATE TABLE IF NOT EXISTS `markers` (
   `lng` float(10,6) NOT NULL,
   `type` varchar(30) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `markers`
+-- Extraindo dados da tabela `markers`
 --
 
 INSERT INTO `markers` (`id`, `name`, `address`, `lat`, `lng`, `type`) VALUES
 (6, 'Casa', '1', -29.126886, -51.182335, 'teste'),
-(5, 'Codeca', 'RUA 123', -29.128613, -51.182465, 'Lixo');
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+(5, 'Codeca', 'RUA 123', -29.128613, -51.182465, 'Lixo'),
+(7, 'Igreja Sao Pelegrino', 'Rua Sinimbu', -29.168962, -51.188995, 'Inflamaveis');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `usuario`
---
-
-DROP TABLE IF EXISTS `usuario`;
-CREATE TABLE IF NOT EXISTS `usuario` (
-  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `nome` varchar(250) NOT NULL,
-  `senha` varchar(32) NOT NULL,
-  `email` varchar(250) NOT NULL,
-  `tipo` int(1) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `id` (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `usuario`
---
-
-INSERT INTO `usuario` (`id`, `nome`, `senha`, `email`, `tipo`) VALUES
-(1, 'teste', '123', 'teste@teste', 1),
-(2, 'teste2', '123', 'teste2@teste', 1);
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `materia`
+-- Estrutura da tabela `materia`
 --
 
 DROP TABLE IF EXISTS `materia`;
@@ -96,15 +61,42 @@ CREATE TABLE IF NOT EXISTS `materia` (
   `imagem` bit(64) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `materia`
+-- Extraindo dados da tabela `materia`
 --
 
 INSERT INTO `materia` (`id`, `nome`, `descricao`, `imagem`) VALUES
 (2, 'teste', 'teste', b'0000000000000000000000000111010001100101011100110111010001100101'),
-(3, '123', '123', b'0000000000000000000000000111010001100101011100110111010001100101');
+(3, '123', '123', b'0000000000000000000000000111010001100101011100110111010001100101'),
+(4, 'Projeto Tematico', 'Ajustes do projeto tematico', b'0000000000000000000000000111010001100101011100110111010001100101');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `usuario`
+--
+
+DROP TABLE IF EXISTS `usuario`;
+CREATE TABLE IF NOT EXISTS `usuario` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `nome` varchar(250) NOT NULL,
+  `senha` varchar(32) NOT NULL,
+  `email` varchar(250) NOT NULL,
+  `tipo` int(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `usuario`
+--
+
+INSERT INTO `usuario` (`id`, `nome`, `senha`, `email`, `tipo`) VALUES
+(1, 'teste', '123', 'teste@teste', 1),
+(2, 'teste2', '123', 'teste2@teste', 1);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
