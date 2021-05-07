@@ -41,6 +41,7 @@ class MySqlDaofactory extends DaoFactory {
     public function getMateriaDao() {
         return new MySqlMateriaDao($this->getConnection());
     }
+
     public function getPontoColetaDao() {
         return new MySqlPontoColetaDao($this->getConnection());
     }

@@ -27,6 +27,28 @@
 
 <body class="bg-gradient-primary">
 
+    <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand js-scroll-trigger" href="index.php">Sorte Verde</a>
+            <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                Menu
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="cadastro.html">Cadastro</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="login.html">Login</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="ponto_coleta.php">Coleta</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="cadastro_materias.php">Cadastrar Materia</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="cadastro_pontos.php">Cadastrar Ponto de Coleta</a></li>
+                </ul>
+                <form id="form_logout" action="../executa_logout.php" method="POST" role="form">
+                    <a href="javascript:$('#form_logout').submit();" class="btn btn-primary btn-user btn-block">Deslogar</a>
+                </form>
+            </div>
+        </div>
+    </nav>
+
     <div class="container">
 
         <div class="card o-hidden border-0 shadow-lg my-5">
@@ -39,23 +61,21 @@
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Cadastre uma nova matéria:</h1>
                             </div>
-                            <form class="user">
+                            <form class="user" action="../insere_materia.php" method="POST">
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-user" id="nome_materia" name="nome_materia" placeholder="Digite o título da matéria">
                                 </div>
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-user" id="descricao_materia" name="descricao_materia" placeholder="Digite a descrição da matéria">
                                 </div>
-                                <a href="login.html" class="btn btn-primary btn-user btn-block" id="btn_anexa">
+                                <a class="btn btn-primary btn-user btn-block" id="anexo_materia" name="anexo_materia">
                                     Anexar Imagem
                                 </a>
-                                <a href="login.html" class="btn btn-primary btn-user btn-block" id="btn_publica">
-                                    Publicar matéria
-                                </a>
+                                <input style="width: 100%;" type="submit" class="btn btn-primary btn-user"  value="Pulicar matéria"><br><br>
                                 <hr>
                             </form>
                             <div class="text-center">
-                                <a class="small" href="index.html">Voltar</a>
+                                <a class="small" href="index.php">Voltar</a>
                             </div>
                         </div>
                     </div>

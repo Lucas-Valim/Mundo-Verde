@@ -61,7 +61,7 @@
                 </div>
             </div>
         </section>
-    <div id="map"></div><br><br>
+    <div>
         <!-- About Section-->
         <section class="page-section bg-primary text-white mb-0" id="about">
             <div class="container">
@@ -77,11 +77,12 @@
                                 <option value="industrial">Resíduos Industriais</option>
                             </select>
                         </div>
-                    </div>                    
-                    <div class="row" id="mapa">
-                    </div>
+                    </div>    
                 </form>
             </div>
+          </section>
+        </div>
+        <div id="map"></div>
     <script>
       var customLabel = {
         restaurant: {
@@ -100,7 +101,7 @@
         var infoWindow = new google.maps.InfoWindow;
 
           // Endereço da onde vai buscar o mapa, aqui tem que ir os resultados
-          downloadUrl('resultado.php', function(data) {
+          downloadUrl('../resultado.php', function(data) {
             var xml = data.responseXML;
             var markers = xml.documentElement.getElementsByTagName('marker');
             Array.prototype.forEach.call(markers, function(markerElem) {
@@ -118,7 +119,7 @@
               infowincontent.appendChild(document.createElement('br'));
 
               var text = document.createElement('text');
-              text.textContent = address
+              text.textContent = "Endereço: " + address + "Tipo: " + type 
               infowincontent.appendChild(text);
               var icon = customLabel[type] || {};
               var marker = new google.maps.Marker({
