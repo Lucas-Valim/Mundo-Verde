@@ -72,4 +72,29 @@ class MySqlMateriaDao extends DAO implements MateriaDao {
         return $materias;
     }
 
+    public function buscaPorId($id) {
+        
+        $materia = null;
+
+        $query = "SELECT id, nome, descricao, imagem
+                FROM
+                    " . $this->table_name .
+                    "WHERE id = ?";
+
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->bindValue(1, $id);
+
+        $stmt->execute();
+
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($row)
+        {
+            $materia = new Materia($row['id'],$row['nome'], $row['descricao'], $row['imagem']);
+        }
+        
+        return $materia;
+    }
+
 }

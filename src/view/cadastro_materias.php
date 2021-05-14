@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Cadastro de Pontos</title>
+    <title>Cadastro de Matérias</title>
     <!-- Favicon-->
     <link rel="sortcut icon" type="image/gif" href="assets/img/icon.png" />
     <!-- Custom fonts for this template-->
@@ -61,16 +61,21 @@
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Cadastre uma nova matéria:</h1>
                             </div>
-                            <form class="user" action="../insere_materia.php" method="POST">
+                            <form class="user" action="../insere_materia.php" method="POST" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-user" id="nome_materia" name="nome_materia" placeholder="Digite o título da matéria">
                                 </div>
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-user" id="descricao_materia" name="descricao_materia" placeholder="Digite a descrição da matéria">
                                 </div>
-                                <a class="btn btn-primary btn-user btn-block" id="anexo_materia" name="anexo_materia">
-                                    Anexar Imagem
-                                </a>
+                                <label>
+                                    Anexar Imagem*
+                                </label>
+                                <input type="hidden" name="MAX_FILE_SIZE" value="200000000" />
+                                <input type="file" name="anexo_materia" id="anexo_materia" />
+                                <label style="font-style: italic">
+                                    É recomendado enviar uma imagem de dimensões 1920x1080+
+                                </label>
                                 <input style="width: 100%;" type="submit" class="btn btn-primary btn-user"  value="Pulicar matéria"><br><br>
                                 <hr>
                             </form>
