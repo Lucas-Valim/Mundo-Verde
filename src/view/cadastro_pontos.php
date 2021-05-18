@@ -55,7 +55,25 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-user" id="type" name="type" placeholder="Tipo de descarte">
+                                    <label style="margin-left:47px" for="Descarte">Selecione o tipo do descarte:</label>
+                                    <select  name="Descarte" id="Descarte">
+                                        <?php
+                                            
+                                            include_once "../fachada.php";
+
+                                            $dao = $factory->getDescarteDao();
+                                            $fornecedores = $dao->buscaTodos();
+
+                                            if ($descartes)
+                                            {
+                                                foreach ($descartes as $descarte)
+                                                {
+                                                    echo "<option value=\"" . $descarte->getId() . "\">" . $descarte->getNome() . "</option>";
+                                                }
+                                            }
+                                        ?>
+                                    </select>
+            </div>
                                 </div>
                                 <div class="row">
                                 <input style="width: 50%;" type="reset" class="btn btn-primary btn-user"  value="Limpar"><br><br>
