@@ -62,7 +62,7 @@ class MySqlDescarteDao extends DAO implements DescarteDao {
 
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
             extract($row);
-            $descartes[] = new descarte($row['id'],$row['nome']);
+            $descartes[] = new Descarte($row['id'],$row['nome']);
         }
 
         return $descartes;

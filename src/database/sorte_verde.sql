@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 07-Maio-2021 às 01:11
+-- Tempo de geração: 19-Maio-2021 às 00:31
 -- Versão do servidor: 5.7.31
 -- versão do PHP: 7.3.21
 
@@ -24,6 +24,27 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `descarte`
+--
+
+DROP TABLE IF EXISTS `descarte`;
+CREATE TABLE IF NOT EXISTS `descarte` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(60) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `descarte`
+--
+
+INSERT INTO `descarte` (`id`, `nome`) VALUES
+(1, 'teste'),
+(2, 'teste2');
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `markers`
 --
 
@@ -34,18 +55,9 @@ CREATE TABLE IF NOT EXISTS `markers` (
   `address` varchar(80) NOT NULL,
   `lat` float(10,6) NOT NULL,
   `lng` float(10,6) NOT NULL,
-  `type` varchar(30) NOT NULL,
+  `id_descarte` int(30) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
-
---
--- Extraindo dados da tabela `markers`
---
-
-INSERT INTO `markers` (`id`, `name`, `address`, `lat`, `lng`, `type`) VALUES
-(6, 'Casa', '1', -29.126886, -51.182335, 'teste'),
-(5, 'Codeca', 'RUA 123', -29.128613, -51.182465, 'Lixo'),
-(7, 'Igreja Sao Pelegrino', 'Rua Sinimbu', -29.168962, -51.188995, 'Inflamaveis');
 
 -- --------------------------------------------------------
 
@@ -88,14 +100,14 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `usuario`
 --
 
 INSERT INTO `usuario` (`id`, `nome`, `senha`, `email`, `tipo`) VALUES
-(1, 'teste', '123', 'teste@teste', 1),
+(3, 'Pedro Henrique Lucchese', 'senha', 'pedro130300@gmail.com', 1),
 (2, 'teste2', '123', 'teste2@teste', 1);
 COMMIT;
 

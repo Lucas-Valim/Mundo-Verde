@@ -62,7 +62,7 @@
                                             include_once "../fachada.php";
 
                                             $dao = $factory->getDescarteDao();
-                                            $fornecedores = $dao->buscaTodos();
+                                            $descartes = $dao->buscaTodos();
 
                                             if ($descartes)
                                             {
@@ -73,11 +73,10 @@
                                             }
                                         ?>
                                     </select>
-            </div>
                                 </div>
                                 <div class="row">
-                                <input style="width: 50%;" type="reset" class="btn btn-primary btn-user"  value="Limpar"><br><br>
-                                <input style="width: 50%" type="submit" class="btn btn-primary btn-user"  value="Registre o novo ponto"><br><br>
+                                    <input style="width: 50%;" type="reset" class="btn btn-primary btn-user"  value="Limpar"><br><br>
+                                    <input style="width: 50%" type="submit" class="btn btn-primary btn-user"  value="Registre o novo ponto"><br><br>
                                 </div>
                             </form>
                             <div class="text-center">

@@ -29,9 +29,7 @@ class MySqlDaofactory extends DaoFactory {
     }
 
     public function getUsuarioDao() {
-
-        return new MySqlUsuarioDao($this->getConnection());
-
+         return new MySqlUsuarioDao($this->getConnection());
     }
 
     public function getDescarteDao() {
