@@ -1,6 +1,8 @@
 <?php
 require("conexao.php");
 
+include_once './fachada.php';
+
 function parseToXML($htmlStr){
 	$xmlStr=str_replace('<','&lt;',$htmlStr);
 	$xmlStr=str_replace('>','&gt;',$xmlStr);
@@ -27,7 +29,16 @@ while ($row_markers = mysqli_fetch_assoc($resultado_markers)){
   echo 'address="' . parseToXML($row_markers['address']) . '" ';
   echo 'lat="' . $row_markers['lat'] . '" ';
   echo 'lng="' . $row_markers['lng'] . '" ';
-  echo 'type="' . $row_markers['type'] . '" ';
+  
+  $dao = $factory->getDescarteDao();
+  $dao->buscaPorId($row_markers['id_descarte']);
+  
+  $row = $stmt->fetch(PDO::FETCH_ASSOC);
+  if($row){
+    extract($row);
+    echo 'type="' . $row['nome'] . '" ';
+  }
+
   echo '/>';
 }
 

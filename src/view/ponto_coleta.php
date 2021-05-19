@@ -107,7 +107,7 @@
             Array.prototype.forEach.call(markers, function(markerElem) {
               var name = markerElem.getAttribute('name');
               var address = markerElem.getAttribute('address');
-              var type = markerElem.getAttribute('type');
+              var nome_descarte = markerElem.getAttribute('type');
               var point = new google.maps.LatLng(
                   parseFloat(markerElem.getAttribute('lat')),
                   parseFloat(markerElem.getAttribute('lng')));
@@ -119,9 +119,9 @@
               infowincontent.appendChild(document.createElement('br'));
 
               var text = document.createElement('text');
-              text.textContent = "Endereço: " + address + "Tipo: " + type 
+              text.textContent = "Endereço: " + address + "Tipo: " + nome_descarte 
               infowincontent.appendChild(text);
-              var icon = customLabel[type] || {};
+              var icon = customLabel[nome_descarte] || {};
               var marker = new google.maps.Marker({
                 map: map,
                 position: point,

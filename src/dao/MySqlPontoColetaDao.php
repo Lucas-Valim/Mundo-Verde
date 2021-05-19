@@ -10,8 +10,8 @@ class MysqlPontoColetaDao extends DAO implements PontoColetaDao {
     public function insere($ponto) {
 
         $query = "INSERT INTO " . $this->table_name .
-        " (name, address, lat, lng, type) VALUES" .
-        " (:name, :address, :lat, :lng, :type)";
+        " (name, address, lat, lng, id_descarte) VALUES" .
+        " (:name, :address, :lat, :lng, :id_descarte)";
 
         $stmt = $this->conn->prepare($query);
 
@@ -20,7 +20,7 @@ class MysqlPontoColetaDao extends DAO implements PontoColetaDao {
         $stmt->bindValue(":address", $ponto->getAddress());
         $stmt->bindValue(":lat", $ponto->getLat());
         $stmt->bindValue(":lng", $ponto->getLng());
-        $stmt->bindValue(":type", $ponto->getType());
+        $stmt->bindValue(":id_descarte", $ponto->getId_descarte());
 
         if($stmt->execute()){
             return true;
@@ -33,7 +33,7 @@ class MysqlPontoColetaDao extends DAO implements PontoColetaDao {
     public function altera(&$ponto) {
 
         $query = "UPDATE " . $this->table_name .
-        " SET name = :name, address = :address, lat = :lat, lng = :lng, type = :type" .
+        " SET name = :name, address = :address, lat = :lat, lng = :lng, id_descarte = :id_descarte" .
         " WHERE id = :id";
 
         $stmt = $this->conn->prepare($query);
@@ -44,7 +44,7 @@ class MysqlPontoColetaDao extends DAO implements PontoColetaDao {
         $stmt->bindValue(":address", $ponto->getAddress());
         $stmt->bindValue(":lat", $ponto->getLat());
         $stmt->bindValue(":lng", $ponto->getLng());
-        $stmt->bindValue(":type", $ponto->getType());
+        $stmt->bindValue(":id_descarte", $ponto->getiId_descarte());
 
         // execute the query
         if($stmt->execute()){
@@ -59,7 +59,7 @@ class MysqlPontoColetaDao extends DAO implements PontoColetaDao {
         $pontos = array();
 
         $query = "SELECT
-                    id , name, address, lat, lng, type
+                    id , name, address, lat, lng, id_descarte
                 FROM
                     " . $this->table_name .
                     " ORDER BY id ASC"; 
@@ -69,7 +69,7 @@ class MysqlPontoColetaDao extends DAO implements PontoColetaDao {
 
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
             extract($row);
-            $pontos[] = new PontoColeta($row['id'],$row['name'], $row['address'], $row['lat'], $row['lng'], $row['type']);
+            $pontos[] = new PontoColeta($row['id'],$row['name'], $row['address'], $row['lat'], $row['lng'], $row['id_descarte']);
         }
 
         return $pontos;

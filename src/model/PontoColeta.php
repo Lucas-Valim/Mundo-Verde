@@ -6,17 +6,17 @@ class PontoColeta {
     private $address;
     private $lat;
     private $lng;
-    private $type;
+    private $id_descarte;
    
 
-    public function __construct( $id, $name, $address,  $lat, $lng, $type)
+    public function __construct( $id, $name, $address,  $lat, $lng, $id_descarte)
     {
         $this->id=$id;
         $this->name=$name;
         $this->address=$address;
         $this->lat=$lat;
         $this->lng=$lng; 
-        $this->type=$type;
+        $this->id_descarte=$id_descarte;
     }
 
     public function getId() { return $this->id; }
@@ -34,8 +34,8 @@ class PontoColeta {
     public function getLng() { return $this->lng; }
     public function setLng($lng) {$this->lng = $lng;}
 
-    public function getType() { return $this->type; }
-    public function setType($type) {$this->type = $type;}
+    public function getId_descarte() { return $this->id_descarte; }
+    public function setId_descarte($id_descarte) {$this->id_descarte = $id_descarte;}
 
 }
 ?>
