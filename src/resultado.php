@@ -12,36 +12,36 @@ function parseToXML($htmlStr){
 	return $xmlStr;
 }
 
-// Select all the rows in the markers table
-$result_markers = "SELECT * FROM markers";
-$resultado_markers = mysqli_query($conn, $result_markers);
+$dao = $factory->getPontoColetaDao();
+$pontos = $dao->buscaTodos();
 
 header("Content-type: text/xml");
 
 // Start XML file, echo parent node
 echo '<markers>';
 
-// Iterate through the rows, printing XML nodes for each
-while ($row_markers = mysqli_fetch_assoc($resultado_markers)){
-  // Add to XML document node
-  echo '<marker ';
-  echo 'name="' . parseToXML($row_markers['name']) . '" ';
-  echo 'address="' . parseToXML($row_markers['address']) . '" ';
-  echo 'lat="' . $row_markers['lat'] . '" ';
-  echo 'lng="' . $row_markers['lng'] . '" ';
+if ($pontos)
+{
+
+  foreach ($pontos as $ponto)
+  {
+    echo '<marker ';
+    echo 'name="' . parseToXML($ponto->getName()) . '" ';
+    echo 'address="' . parseToXML($ponto->getAddress()) . '" ';
+    echo 'lat="' . $ponto->getLat() . '" ';
+    echo 'lng="' . $ponto->getLng() . '" ';
   
-  $dao = $factory->getDescarteDao();
-  $dao->buscaPorId($row_markers['id_descarte']);
+    $dao = $factory->getDescarteDao();
+    $descarte = $dao->buscaPorId($ponto->getId_descarte());
+    
+    if($descarte){
+      echo 'type="' . $descarte->getNome() . '" ';
+    }
   
-  $row = $stmt->fetch(PDO::FETCH_ASSOC);
-  if($row){
-    extract($row);
-    echo 'type="' . $row['nome'] . '" ';
+    echo '/>';
+
   }
-
-  echo '/>';
 }
-
 // End XML file
 echo '</markers>';
 

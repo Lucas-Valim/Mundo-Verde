@@ -1,6 +1,7 @@
+<?php header('Content-Type: text/html; charset=iso-8859-15'); ?>
 <!DOCTYPE html >
   <head>
-  <meta charset="utf-8" />
+  <meta charset="iso-8859-15"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
@@ -70,11 +71,24 @@
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label>Escolha o tipo de descarte:</label>
-                            <select type="text" class="form-control form-control-user" name="tipo_descarte" id="tipo_descarte">
-                                <option value="selecione">Selecione...</option>
-                                <option value="eletronico">Resíduos Eletrônicos</option>
-                                <option value="hospitalar">Resíduos Hospitalares</option>
-                                <option value="industrial">Resíduos Industriais</option>
+                              <select name="idmarkers" id="idmarkers">
+                              <option></option>
+                                <?php
+                                    
+                                    include_once "../fachada.php";
+
+                                    $dao = $factory->getDescarteDao();
+                                    $descartes = $dao->buscaTodos();
+
+                                    if ($descartes)
+                                    {
+                                        foreach ($descartes as $descarte)
+                                        {
+                                            $nome = $descarte->getNome();
+                                            echo "<option value=\"" . $descarte->getId() . "\">" . $nome . "</option>";
+                                        }
+                                    }
+                                ?>
                             </select>
                         </div>
                     </div>    
@@ -83,6 +97,11 @@
           </section>
         </div>
         <div id="map"></div>
+        <script>
+function residuos_change(){
+    document.getElementById("form_residuos").submit();
+}
+</script>
     <script>
       var customLabel = {
         restaurant: {
@@ -119,7 +138,7 @@
               infowincontent.appendChild(document.createElement('br'));
 
               var text = document.createElement('text');
-              text.textContent = "Endereço: " + address + "Tipo: " + nome_descarte 
+              text.textContent = "Endereço: "  + address + " Tipo: " + nome_descarte 
               infowincontent.appendChild(text);
               var icon = customLabel[nome_descarte] || {};
               var marker = new google.maps.Marker({

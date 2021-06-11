@@ -74,4 +74,30 @@ class MysqlPontoColetaDao extends DAO implements PontoColetaDao {
 
         return $pontos;
     }
+
+    public function buscaPorTipoDescarte($id_descarte)
+    {
+        
+        $pontos = array();
+
+        $query = "SELECT
+                    id, name, address, lat, lng, id_descarte
+                FROM
+                    " . $this->table_name .
+                    " WHERE id_descarte = :id_descarte " .
+                    " ORDER BY id ASC";
+
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->bindValue(":id_descarte", $id_descarte);
+
+        $stmt->execute();
+
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+            extract($row);
+            $pontos[] = new PontoColeta($row['id'],$row['name'], $row['address'], $row['lat'], $row['lng'], $row['id_descarte']);
+        }
+
+        return $pontos;
+    }
 }

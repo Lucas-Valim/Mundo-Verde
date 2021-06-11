@@ -75,11 +75,11 @@ class MySqlDescarteDao extends DAO implements DescarteDao {
         $query = "SELECT id, nome
                 FROM
                     " . $this->table_name .
-                    "WHERE id = ?";
+                    " WHERE id = :id";
 
         $stmt = $this->conn->prepare($query);
 
-        $stmt->bindValue(1, $id);
+        $stmt->bindValue(":id", $id);
 
         $stmt->execute();
 
@@ -87,7 +87,8 @@ class MySqlDescarteDao extends DAO implements DescarteDao {
 
         if ($row)
         {
-            $descarte = new descarte($row['id'],$row['nome']);
+            extract($row);
+            $descarte = new Descarte($row['id'],$row['nome']);
         }
         
         return $descarte;
