@@ -1,7 +1,8 @@
 <?php
-require("conexao.php");
 
 include_once './fachada.php';
+
+$idResiduo = isset($_GET['idResiduo']) ? $_GET['idResiduo'] : 0;
 
 function parseToXML($htmlStr){
 	$xmlStr=str_replace('<','&lt;',$htmlStr);
@@ -13,7 +14,13 @@ function parseToXML($htmlStr){
 }
 
 $dao = $factory->getPontoColetaDao();
-$pontos = $dao->buscaTodos();
+
+if (empty($idResiduo))
+{
+  $pontos = $dao->buscaTodos();
+} else {
+  $pontos = $dao->buscaPorTipoDescarte($idResiduo);
+}
 
 header("Content-type: text/xml");
 

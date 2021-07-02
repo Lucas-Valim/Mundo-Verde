@@ -50,25 +50,25 @@
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label>Escolha o tipo de descarte:</label>
-                              <select name="idmarkers" id="idmarkers">
-                              <option></option>
-                                <?php
-                                    
-                                    include_once "../fachada.php";
+                              <select id="idmarkers" name="idmarkers" onchange="initMap(this)">
+                                <option value=""></option>
+                                  <?php
+                                      
+                                      include_once "../fachada.php";
 
-                                    $dao = $factory->getDescarteDao();
-                                    $descartes = $dao->buscaTodos();
+                                      $dao = $factory->getDescarteDao();
+                                      $descartes = $dao->buscaTodos();
 
-                                    if ($descartes)
-                                    {
-                                        foreach ($descartes as $descarte)
-                                        {
-                                            $nome = $descarte->getNome();
-                                            echo "<option value=\"" . $descarte->getId() . "\">" . $nome . "</option>";
-                                        }
-                                    }
-                                ?>
-                            </select>
+                                      if ($descartes)
+                                      {
+                                          foreach ($descartes as $descarte)
+                                          {
+                                              $nome = $descarte->getNome();
+                                              echo "<option value=\"" . $descarte->getId() . "\">" . $nome . "</option>";
+                                          }
+                                      }
+                                  ?>
+                              </select>
                         </div>
                     </div>    
                 </form>
@@ -76,11 +76,6 @@
           </section>
         </div>
         <div id="map"></div>
-        <script>
-function residuos_change(){
-    document.getElementById("form_residuos").submit();
-}
-</script>
     <script>
       var customLabel = {
         restaurant: {
@@ -91,7 +86,16 @@ function residuos_change(){
         }
       };
 
-        function initMap() {
+        function initMap(selectObject) {
+
+        var idResiduo;
+
+        if (selectObject == null) {
+          idResiduo = "";
+        } else {
+          idResiduo = selectObject.value;
+        }
+
         var map = new google.maps.Map(document.getElementById('map'), {
           center: new google.maps.LatLng(-29.161358257719222, -51.15427341306435), // Endereço da onde vai buscar o mapa
           zoom: 13
@@ -99,7 +103,7 @@ function residuos_change(){
         var infoWindow = new google.maps.InfoWindow;
 
           // Endereço da onde vai buscar o mapa, aqui tem que ir os resultados
-          downloadUrl('../resultado.php', function(data) {
+          downloadUrl('../resultado.php?idResiduo=' + idResiduo, function(data) {
             var xml = data.responseXML;
             var markers = xml.documentElement.getElementsByTagName('marker');
             Array.prototype.forEach.call(markers, function(markerElem) {

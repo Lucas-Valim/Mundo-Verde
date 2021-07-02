@@ -9,8 +9,8 @@ include_once('MySqlPontoColetaDao.php');
 class MySqlDaofactory extends DaoFactory {
 
     // specify your own database credentials
-    private $username = "root";
-    private $password = "";
+    private $username = "leonardo";
+    private $password = "root";
     public $conn;
 
     // get the database connection

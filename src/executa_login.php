@@ -32,7 +32,7 @@ if($usuario) {
         $_SESSION["id_usuario"] = $usuario->getId();
         $_SESSION["nome_usuario"] = stripslashes($usuario->getNome());
         $_SESSION["permissao_usuario"] = $usuario->getTipo();
-        header("Location: ./view/index");
+        header("Location: ./view/index.php");
         exit;
     } else {
         $problemas = TRUE;
