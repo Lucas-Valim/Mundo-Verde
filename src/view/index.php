@@ -69,8 +69,9 @@
                             echo "<div class=\"portfolio-item-caption-content text-center text-white\"><i class=\"fas fa-plus fa-3x\"></i></div>";
                             echo "</div>";
                             echo "<h1 style=\"text-align: center\"><label font-bold=\"true\"></label>$tituloMateria</h1>";
-                            echo "<img class=\"img-fluid\" src=\"$caminhoImagem\" alt=\"\" />";
+                            echo "<img class=\"img-fluid\" style=\"width: 600px; margin-left: 90px; max-height: 600px\" src=\"$caminhoImagem\" alt=\"\" />";
                             echo "<p style=\"padding-top: 10px\">$descMateria</p>";
+                            echo "<hr>";
                             echo "</div>";
                             echo "</div>";
                             echo "</div>";

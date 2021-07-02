@@ -43,7 +43,7 @@
                                     <input type="text" class="form-control form-control-user" id="nome_materia" name="nome_materia" placeholder="Digite o título da matéria">
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-user" id="descricao_materia" name="descricao_materia" placeholder="Digite a descrição da matéria">
+                                    <textarea class="form-control form-control-user" rows="2"  id="descricao_materia" name="descricao_materia" placeholder="Digite a descrição da matéria"></textarea>
                                 </div>
                                 <label>
                                     Anexar Imagem*
