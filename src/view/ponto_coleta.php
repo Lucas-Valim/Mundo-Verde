@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Sorte Verde</title>
+        <title>Mundo Verde</title>
         <!-- Favicon-->
         <link rel="sortcut icon" type="image/gif" href="assets/img/icon.png" />
         <!-- Font Awesome icons (free version)-->
@@ -163,7 +163,7 @@
     </section>
         <!-- Copyright Section-->
         <div class="copyright py-4 text-center text-white">
-            <div class="container"><small>Copyright © Sorte Verde 2021</small></div>
+            <div class="container"><small>Copyright © Mundo Verde 2021</small></div>
         </div>
         <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes)-->
         <div class="scroll-to-top d-lg-none position-fixed">
